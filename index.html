@@ -28534,7 +28534,7 @@ let lastUnivName = "";
 })
 
 function filterUniversities() {
-  const inputs = this.value.trim().split(/[\s　]+/)
+  const inputs = this.value.trim().split(/[\s　]+/).map(s => s.replace(/大学$/, "大"))
   const tableBody = document.getElementById("univ_table_body")
   tableBody.innerHTML = ""
 
