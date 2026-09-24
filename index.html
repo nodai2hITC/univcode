@@ -28,12 +28,16 @@ input[type="search"] {
   background-color: #eeeeee;
 }
 
+table tr td:nth-of-type(2){
+  font-family: "Consolas", "Menlo", monospace;
+}
+
 #univ_table #name {
   width: 25em;
   text-align: center;
 }
 #univ_table #code {
-  width: 6em;
+  width: 7.5em;
   text-align: center;
 }
 
@@ -28525,6 +28529,7 @@ let lastUnivName = "";
   const match = name.match(/^(\d+)(.+)$/)
   if (match) name = lastUnivName.substring(0, parseInt(match[1])) + match[2]
   lastUnivName = name
+  code = code.slice(0, 4) + "-" + code.slice(4, 6) + "-" + code.slice(6, 10)
   univMap.set(name, code)
 })
 
@@ -28569,8 +28574,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
     <table id="univ_table">
       <thead>
         <tr>
-          <th id="name">大学・学部名</th>
-          <th id="code">コード</th>
+          <th id="name">大学・学部・学科・受験型</th>
+          <th id="code">コード番号</th>
         </tr>
       </thead>
       <tbody id="univ_table_body"></tbody>
