@@ -28527,6 +28527,7 @@ let lastUnivName = "";
 `.trim().split("\n").forEach(line => {
   let [name, code] = line.split("\t")
   const match = name.match(/^(\d+)(.+)$/)
+  if (name == "214") console.log(match)
   if (match) name = lastUnivName.substring(0, parseInt(match[1])) + match[2]
   lastUnivName = name
   code = code.slice(0, 4) + "-" + code.slice(4, 6) + "-" + code.slice(6, 10)
@@ -28534,7 +28535,7 @@ let lastUnivName = "";
 })
 
 function filterUniversities() {
-  const inputs = this.value.trim().split(/[\s　]+/).map(s => s.replace(/大学$/, "大"))
+  const inputs = this.value.trim().split(/[\s　]+/).map(s => s.replace(/大学$/, "大").replace(/(.)学部$/, "$1").replace(/(.)学科$/, "$1").replace(/(.)期$/, "$1"))
   const tableBody = document.getElementById("univ_table_body")
   tableBody.innerHTML = ""
 
@@ -28568,7 +28569,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
   <body>
     <h1>大学コード検索 (2027年度入試)</h1>
     <p>
-      <input type="search" id="univ_name" placeholder="大学・学部名の一部を入力してください">
+      <input type="search" id="univ_name" placeholder="大学・学部名の一部を入力してください"><br>
+      名称が省略されていることがあるので、出てこない場合は名前の一部を削ってください。例）❌️東京農業大→⭕️東京農大
     </p>
     
     <table id="univ_table">
