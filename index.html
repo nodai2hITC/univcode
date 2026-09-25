@@ -41,6 +41,13 @@ table tr td:nth-of-type(2){
   text-align: center;
 }
 
+span {
+  color: #999;
+}
+span::before, span::after {
+  content: " ";
+}
+
     </style>
     <script>
 const univMap = new Map()
@@ -28550,7 +28557,7 @@ function filterUniversities() {
     const nameCell = document.createElement("td")
     const codeCell = document.createElement("td")
 
-    nameCell.textContent = name.replaceAll("|", " | ")
+    nameCell.innerHTML = name.replaceAll("|", "<span>|</span>")
     codeCell.textContent = code
 
     row.appendChild(nameCell)
@@ -28570,7 +28577,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
     <h1>大学コード検索 (2027年度入試)</h1>
     <p>
       <input type="search" id="univ_name" placeholder="大学・学部名の一部を入力してください"><br>
-      名称が省略されていることがあるので、出てこない場合は名前の一部を削ってください。例）❌️東京農業大→⭕️東京農大
+      名称が省略されていることがあるので、出てこない場合は名前の一部を削ってください。<br>
+      例）❌️東京農業大→⭕️東京農大
     </p>
     
     <table id="univ_table">
